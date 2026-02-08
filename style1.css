@@ -1,5 +1,5 @@
-       body {
-            font-family: 'Dancing Script', cursive;
+ body {
+            font-family: 'Poppins', sans-serif;
             text-align: center;
             background-color: #ffe6e6;
             margin: 0;
@@ -23,3 +23,87 @@
             color: #d63384;
             font-weight: bold;
         }
+    </style>
+</head>
+<body>
+    <div class="text">Yay thank you for being my valentine!</div>
+    <video autoplay muted loop playsinline>
+        <!-- Ganti 'path/to/your-celebration-video.mp4' dengan path file video lokal Anda, misalnya 'celebration.mp4' -->
+        <source src="path/to/your-celebration-video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</body>
+</html>
+Kode Halaman 1 (index.html) Tetap Sama
+Halaman 1 (index.html) tidak berubah karena permintaan Anda hanya untuk halaman 2.
+
+html
+
+Copy code
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine Proposal</title>
+    <style>
+body {
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  background-color: #ffe6e6;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  overflow: visible; /* Tambah ini agar position fixed pada button yes berfungsi dengan baik */
+}
+video {
+  width: 80%;
+  max-width: 600px;
+  height: auto;
+  border-radius: 10px;
+  transition: transform 0.3s ease; /* Tambah ini agar efek geser video smooth */
+}
+.text {
+  margin: 20px 0;
+  font-size: 24px;
+  color: #d63384;
+  font-weight: bold;
+  transition: transform 0.3s ease; /* Tambah ini agar efek geser teks ke atas smooth */
+}
+.buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 20px;
+  position: relative; /* Tambah ini agar button tetap di tengah saat efek */
+}
+button {
+  padding: 10px 20px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: 'poppins', sans-serif;
+  font-weight: bold;
+  display: inline-block;
+  height: 50px;
+  box-sizing: border-box;
+  position: relative; /* Tambah ini untuk z-index dan position saat membesar */
+  z-index: 1; /* Default z-index, akan dinaikkan di JS saat yes membesar */
+}
+
+#yes {
+  background-color: #28a745;
+  color: white;
+  transform-origin: center; /* Tambah ini agar scale dari tengah button */
+}
+#no {
+  background-color: #dc3545;
+  color: white;
+}
