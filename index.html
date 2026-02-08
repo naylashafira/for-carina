@@ -73,7 +73,7 @@ button {
        <button id="yes">Yes</button>
         <button id="no">No</button>
     </div>
-    <video id="video" autoplay muted loop>
+    <video id="video" autoplay muted loop playsinline>
         <source src="couple2.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
@@ -116,10 +116,20 @@ button {
             shiftAmount += 35;
             textElement.style.transform = `translateY(-${shiftAmount}px)`;
             videoElement.style.transform = `translateY(${shiftAmount}px)`;
-            noShiftX += 30;
-            noShiftY += 20;
-            noBtn.style.transform = `translate(${noShiftX}px, ${noShiftY}px)`;
-            // Hapus fixed position agar button tetap di tempatnya dan layar bisa scroll
+
+            // Geseran tombol "No" hanya sampai 10 klik
+            if (noClickCount < 10) {
+                noShiftX += 30;
+                noShiftY += 20;
+                noBtn.style.transform = `translate(${noShiftX}px, ${noShiftY}px)`;
+            } else {
+                // Setelah 10 klik, posisi tombol "No" ke bawah tombol "Yes" dan kedorong mengikuti pembesaran
+                const yesHeight = 50 * yesSize; // Tinggi tombol "Yes" setelah scale
+                noBtn.style.position = 'absolute';
+                noBtn.style.top = `${yesHeight + 15}px`; // Di bawah tombol "Yes" dengan offset 15px
+                noBtn.style.left = '50%'; // Tengah horizontal
+                noBtn.style.transform = 'translateX(-50%)'; // Reset geseran dan tengah
+            }
         }
 
         noBtn.addEventListener('click', () => {
