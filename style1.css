@@ -1,14 +1,15 @@
-        body {
-            font-family: 'Poppins', sans-serif;
+       body {
+            font-family: 'Dancing Script', cursive;
             text-align: center;
-           background-color: #ffe6e6;
+            background-color: #ffe6e6;
             margin: 0;
-            padding: 0;
-            height: 100vh;
+            padding: 20px; /* Tambah padding untuk ruang di HP */
+            min-height: 100vh; /* Pastikan tinggi minimal viewport */
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
+            overflow: visible; /* Pastikan elemen tidak terpotong */
         }
         video {
             width: 80%;
@@ -17,8 +18,8 @@
             border-radius: 10px;
         }
         .text {
-            margin: 20px 0;
-            font-size: 24px;
+            margin: 10px 0; /* Kurangi margin untuk ruang lebih di HP */
+            font-size: 20px; /* Kurangi font-size untuk responsivitas di HP */
             color: #d63384;
             font-weight: bold;
         }
