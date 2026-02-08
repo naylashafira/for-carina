@@ -116,20 +116,10 @@ button {
             shiftAmount += 35;
             textElement.style.transform = `translateY(-${shiftAmount}px)`;
             videoElement.style.transform = `translateY(${shiftAmount}px)`;
-
-            // Geseran tombol "No" hanya sampai 10 klik
-            if (noClickCount < 10) {
-                noShiftX += 30;
-                noShiftY += 20;
-                noBtn.style.transform = `translate(${noShiftX}px, ${noShiftY}px)`;
-            } else {
-                // Setelah 10 klik, posisi tombol "No" ke bawah tombol "Yes" dan kedorong mengikuti pembesaran
-                const yesHeight = 50 * yesSize; // Tinggi tombol "Yes" setelah scale
-                noBtn.style.position = 'absolute';
-                noBtn.style.top = `${yesHeight + 15}px`; // Di bawah tombol "Yes" dengan offset 15px
-                noBtn.style.left = '50%'; // Tengah horizontal
-                noBtn.style.transform = 'translateX(-50%)'; // Reset geseran dan tengah
-            }
+            noShiftX += 30;
+            noShiftY += 20;
+            noBtn.style.transform = `translate(${noShiftX}px, ${noShiftY}px)`;
+            // Hapus fixed position agar button tetap di tempatnya dan layar bisa scroll
         }
 
         noBtn.addEventListener('click', () => {
