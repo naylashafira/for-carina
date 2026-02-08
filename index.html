@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine Proposal</title>
+    <style>
+body {
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  background-color: #ffe6e6;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  overflow: visible; /* Tambah ini agar position fixed pada button yes berfungsi dengan baik */
+}
+video {
+  width: 80%;
+  max-width: 600px;
+  height: auto;
+  border-radius: 10px;
+  transition: transform 0.3s ease; /* Tambah ini agar efek geser video smooth */
+}
+.text {
+  margin: 20px 0;
+  font-size: 24px;
+  color: #d63384;
+  font-weight: bold;
+  transition: transform 0.3s ease; /* Tambah ini agar efek geser teks ke atas smooth */
+}
+.buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 20px;
+  position: relative; /* Tambah ini agar button tetap di tengah saat efek */
+}
+button {
+  padding: 10px 20px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: 'poppins', sans-serif;
+  font-weight: bold;
+  display: inline-block;
+  height: 50px;
+  box-sizing: border-box;
+  position: relative; /* Tambah ini untuk z-index dan position saat membesar */
+  z-index: 1; /* Default z-index, akan dinaikkan di JS saat yes membesar */
+}
+
+#yes {
+  background-color: #28a745;
+  color: white;
+  transform-origin: center; /* Tambah ini agar scale dari tengah button */
+}
+#no {
+  background-color: #dc3545;
+  color: white;
+}
+    </style>
+</head>
+<body>
+    <div class="text">will you be my girlfriend, na??</div>
+    <div class="buttons">
+       <button id="yes">Yes</button>
+        <button id="no">No</button>
+    </div>
+    <video id="video" autoplay muted loop>
+        <source src="couple2.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <script>
+        const yesBtn = document.getElementById('yes');
+        const noBtn = document.getElementById('no');
+        const textElement = document.querySelector('.text');
+        const videoElement = document.getElementById('video');
+
+        let yesSize = 1;
+        let shiftAmount = 0;
+        let noClickCount = 0;
+        let noShiftX = 0;
+        let noShiftY = 0;
+        const maxScale = 15; // Kurangi maxScale agar button besar tapi tidak isi satu layar penuh, masih bisa scroll
+
+        const noTexts = [
+            "No",
+            "Are you sure?",
+            "Really sure?",
+            "Are you positive?",
+            "Benerr gamauu??",
+            "PLLLEASEEEE??:((",
+            "Come on, say yes!",
+            "I promise I'll be good!",
+            "Please please please!",
+            "Masa sih ga yes?",
+            "Just click yes!",
+            "PLEASEE PLEASE PLEASE",
+            "Say yes already!",
+            "Okay, fine, but na think about it!",
+            "Just kidding, say yes please💖"
+        ];
+
+        function growYes() {
+            yesSize += 1.5;
+            if (yesSize > maxScale) yesSize = maxScale; // Batasi agar tidak lebih dari maxScale
+            yesBtn.style.transform = `scale(${yesSize})`;
+            shiftAmount += 35;
+            textElement.style.transform = `translateY(-${shiftAmount}px)`;
+            videoElement.style.transform = `translateY(${shiftAmount}px)`;
+            noShiftX += 30;
+            noShiftY += 20;
+            noBtn.style.transform = `translate(${noShiftX}px, ${noShiftY}px)`;
+            // Hapus fixed position agar button tetap di tempatnya dan layar bisa scroll
+        }
+
+        noBtn.addEventListener('click', () => {
+            noClickCount++;
+            if (noClickCount < noTexts.length) {
+                noBtn.textContent = noTexts[noClickCount];
+            } else {
+                // Saat klik ke-15 atau lebih, set ke teks terakhir dan disable button "No"
+                noBtn.textContent = noTexts[noTexts.length - 1];
+                noBtn.disabled = true;
+                noBtn.style.cursor = 'not-allowed';
+                noBtn.style.opacity = '0.5';
+                // Set "Yes" ke maxScale langsung jika belum
+                if (yesSize < maxScale) {
+                    yesSize = maxScale;
+                    yesBtn.style.transform = `scale(${yesSize})`;
+                }
+            }
+            growYes();
+        });
+
+        yesBtn.addEventListener('click', () => {
+            window.location.href = 'index1.html';
+        });
+    </script>
+</body>
+</html>
